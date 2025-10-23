@@ -1,6 +1,7 @@
 package br.com.dio.model;
 
 import lombok.Getter;
+
 import java.util.List;
 
 import static br.com.dio.model.BankService.ACCOUNT;
@@ -21,7 +22,7 @@ public class AccountWallet extends Wallet {
         addMoney(amount, "valor de criação da conta");
     }
 
-    public void addMoney(final long amount, final String description){
+    public void addMoney(final long amount, final String description) {
         var money = generateMoney(amount, description);
         this.money.addAll(money);
     }

@@ -54,5 +54,5 @@ public abstract class Wallet {
                 ", money= R$" + money.size() / 100 + "," + money.size() % 100 +
                 '}';
     }
-    
+
 }

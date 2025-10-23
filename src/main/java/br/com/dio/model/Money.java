@@ -11,12 +11,15 @@ import java.util.List;
 @ToString
 @Getter
 public class Money {
+
     private final List<MoneyAudit> history = new ArrayList<>();
 
-    public Money(MoneyAudit history) {
+    public Money(final MoneyAudit history) {
         this.history.add(history);
     }
+
     public void addHistory(final MoneyAudit history) {
         this.history.add(history);
     }
+
 }

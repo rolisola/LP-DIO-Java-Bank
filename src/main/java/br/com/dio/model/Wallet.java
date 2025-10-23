@@ -1,7 +1,6 @@
 package br.com.dio.model;
 
 import lombok.Getter;
-import lombok.ToString;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-@ToString
 public abstract class Wallet {
 
     @Getter
@@ -17,8 +15,8 @@ public abstract class Wallet {
 
     protected final List<Money> money;
 
-    public Wallet(BankService service) {
-        this.service = service;
+    public Wallet(final BankService serviceType) {
+        this.service = serviceType;
         this.money = new ArrayList<>();
     }
 
@@ -31,9 +29,9 @@ public abstract class Wallet {
         return money.size();
     }
 
-    public void addMoney(final long money, final BankService service, final String description) {
+    public void addMoney(final List<Money> money, final BankService service, final String description) {
         var history = new MoneyAudit(UUID.randomUUID(), service, description, OffsetDateTime.now());
-        money.forEach(Money m -> m.addHistory(history));
+        money.forEach(m -> m.addHistory(history));
         this.money.addAll(money);
     }
 
@@ -46,6 +44,15 @@ public abstract class Wallet {
     }
 
     public List<MoneyAudit> getFinancialTransactions() {
-        return money.stream().flatMap( Money m -> m.getHistory().stream()).toList();
+        return money.stream().flatMap(m -> m.getHistory().stream()).toList();
     }
+
+    @Override
+    public String toString() {
+        return "Wallet{" +
+                "service=" + service +
+                ", money= R$" + money.size() / 100 + "," + money.size() % 100 +
+                '}';
+    }
+    
 }

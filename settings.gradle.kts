@@ -1,0 +1,1 @@
+rootProject.name = "LPDIO_Transacoes_Financeiras"
